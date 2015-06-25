@@ -29,7 +29,7 @@ class CreateAddressesTable extends Migration
             $table->string('phone')->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
-            foreach (config('draperstudio.addresses.flags') as $flag) {
+            foreach (config('draperstudio.addressable.flags', []) as $flag) {
                 $table->boolean('is_'.$flag)->default(false)->index();
             }
             $table->timestamps();
