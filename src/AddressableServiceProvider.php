@@ -11,9 +11,13 @@ class AddressableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $config = __DIR__.'/../config/addressable.php';
+
         $this->publishes([
-            __DIR__.'/../config/addressable.php' => config_path('draperstudio.addressable.php'),
+            $config => config_path('draperstudio.addressable.php'),
         ], 'config');
+
+        $this->mergeConfigFrom($config, 'draperstudio.addressable');
 
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('/migrations'),
